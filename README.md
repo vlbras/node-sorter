@@ -1,5 +1,10 @@
 # Node Sorter Technical Assessment
 
+## Instructions to run the code
+
+1. Run the command "node ." to run the code.
+2. The output will be in the "output/real-tree.json".
+
 ## Overview
 
 This is a technical assessment for potential JavaScript Software Engineers.
