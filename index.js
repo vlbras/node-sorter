@@ -22,9 +22,19 @@ const writeFile = async (fileName, data) => {
   }
 }
 
+// The function that returns the children of a node.
+const getChildren = (array, id) => {
+  array.filter((item) => item.parentId === id), null // Filter the array to get the children.
+
+  for (const child of children) {
+    child.children = getChildren(array, child.nodeId) // Recursively get the children.
+  }
+  return children
+}
+
 // The function that runs the program.
 (async () => {
   const nodes = await loadFile(NODE_FILE_PATH)
-  // Nodes to tree
+  const tree = getChildren(nodes, null)
   return writeFile(OUTPUT_PATH, tree)
 })()
