@@ -22,10 +22,20 @@ const writeFile = async (fileName, data) => {
   }
 }
 
+// The function that returns the siblings of a node.
+const getSiblings = (array, id) => {
+  const [sibling] = array.filter((item) => item.previousSiblingId === id) // Get the sibling by filtering the array.
+  if (sibling) {
+    return [sibling, ...getSiblings(array, sibling.nodeId)] // Recursively get the siblings.
+  }
+  return [] // Return an empty array if there are no siblings.
+}
+
 // The function that returns the children of a node.
 const getChildren = (array, id) => {
-  array.filter((item) => item.parentId === id), null // Filter the array to get the children.
-
+  const children = getSiblings(
+    array.filter((item) => item.parentId === id), null // Filter the array to get the children.
+  )
   for (const child of children) {
     child.children = getChildren(array, child.nodeId) // Recursively get the children.
   }
